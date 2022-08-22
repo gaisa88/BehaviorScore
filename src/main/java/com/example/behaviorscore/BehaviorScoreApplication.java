@@ -20,11 +20,9 @@ public class BehaviorScoreApplication {
 
         String iin = "940331451224";
         if (args.length > 0) {
-            iin = args[0];
-        }
-        List <iinAttribute> = new ArrayList<>("IIN", iin);
+            iin = args[0];}
 
-        ScoreResponse response =  client.getScoreCard();
+        Score response =  client.getScoreCard(iin);
 
 
         //Score response = BehaviorClient.getScoreCard();
