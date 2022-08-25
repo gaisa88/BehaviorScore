@@ -1,6 +1,7 @@
 package com.example.behaviorscore;
 
 import com.example.wsdl.Score;
+import com.example.wsdl.ScoreData;
 import com.example.wsdl.ScoreResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,8 +23,11 @@ public class BehaviorScoreApplication {
         if (args.length > 0) {
             iin = args[0];}
 
-        Score response =  client.getScoreCard(iin);
-
+        ScoreData response =  client.getScoreCard(iin);
+        System.out.println(response.getOneYearProbabilityOfDefaultByML());
+        System.out.println(response.getScore());
+        System.out.println(response.getBadRate());
+        System.out.println(response.getIdQuery());
 
         //Score response = BehaviorClient.getScoreCard();
         //BehaviorClient.printResponse(response);

@@ -1,15 +1,13 @@
 package com.example.behaviorscore;
 
-import com.example.wsdl.CigWsHeader;
-import com.example.wsdl.Score;
-import com.example.wsdl.ScoreAttribute;
-import com.example.wsdl.ScoreData;
+import com.example.wsdl.*;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
+import javax.xml.bind.JAXBElement;
 import java.util.List;
 
 public class BehaviorClient extends WebServiceGatewaySupport {
-    public Score getScoreCard(String iin) {
+    public ScoreData getScoreCard(String iin) {
         CigWsHeader myheader = new CigWsHeader();
         myheader.setCulture("ru-RU");
         myheader.setPassword("7752217879");
@@ -27,10 +25,12 @@ public class BehaviorClient extends WebServiceGatewaySupport {
 
 
         request.setScoreCard("BehaviorScoring");
-
         request.getAttributes().add(consentConfirmed);
         request.getAttributes().add(iinAttribute);
-        return (Score) getWebServiceTemplate().marshalSendAndReceive(request, new SecurityHeader(myheader));
+        JAXBElement<ScoreResponse> test = (JAXBElement<ScoreResponse>) getWebServiceTemplate().marshalSendAndReceive(request, new SecurityHeader(myheader));
+        ScoreResponse test1 = test.getValue();
+        ScoreData results1 = test1.getReturn();
+        return test;
 
     }
 
