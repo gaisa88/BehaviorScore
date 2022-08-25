@@ -30,7 +30,7 @@ public class BehaviorClient extends WebServiceGatewaySupport {
         JAXBElement<ScoreResponse> test = (JAXBElement<ScoreResponse>) getWebServiceTemplate().marshalSendAndReceive(request, new SecurityHeader(myheader));
         ScoreResponse test1 = test.getValue();
         ScoreData results1 = test1.getReturn();
-        return test;
+        return results1;
 
     }
 
